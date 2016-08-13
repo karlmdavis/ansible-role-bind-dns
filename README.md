@@ -3,6 +3,8 @@ Role Name
 
 This role can be used to install and manage [bind](https://www.isc.org/downloads/bind/), a DNS server.
 
+![Travis CI Build Status](https://travis-ci.org/karlmdavis/ansible-tested-bind.svg)
+
 Requirements
 ------------
 

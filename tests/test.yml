@@ -1,5 +1,6 @@
 ---
 - hosts: localhost
-  remote_user: root
   roles:
+    # Apply the role (or error out if it fails somehow).
     - tested-bind
+
