@@ -1,2 +1,15 @@
 ---
-# tasks file for tested-bind
+
+# Install all OS packages (including Jenkins itself).
+- include: "packages_{{ ansible_os_family }}.yml"
+
+# Configure the service's launch options.
+- include: "service_config_{{ ansible_os_family }}.yml"
+
+- name: Ensure Service 'bind9' Is Running
+  service:
+    name: bind9
+    state: started
+    enabled: yes
+    become: true
+

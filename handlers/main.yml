@@ -1,2 +1,8 @@
 ---
-# handlers file for tested-bind
+
+- name: Restart Service 'bind9'
+  service:
+    name: bind9
+    state: restarted
+  become: true
+

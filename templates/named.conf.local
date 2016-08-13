@@ -1,0 +1,33 @@
+//
+// Do any local configuration here
+//
+
+// Consider adding the 1918 zones here, if they are not used in your
+// organization
+//include "/etc/bind/zones.rfc1918";
+
+# List other trusted name servers that are allowed to request zone transfers:
+acl transfer-peers  {
+	{% for peer in zone_transfer_peers %}
+	{{ peer }};
+	{%endfor %}
+};
+
+# Suppress all of the "unexpected RCODE REFUSED" errors in syslog.
+logging {
+	category lame-servers {
+		null;
+	};
+};
+
+# Prevent all of the 'named[2034]: connect(fe80::#53) 22/Invalid argument' errors in /var/log/syslog, per https://kb.isc.org/article/AA-00537/0/Why-does-named-log-error-22-Invalid-argument-quoting-an-IPv6-address-starting-with-fe80%3A-.html.
+server fe80::/16 { bogus yes; };
+
+{% for zone in zones %}
+zone "{{ zone.name }}" {
+	type master;
+	file "/etc/bind/db.{{ zone.name }}";
+	allow-transfer { transfer-peers; };
+};
+{% endfor %}
+

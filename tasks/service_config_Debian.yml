@@ -1,0 +1,16 @@
+---
+# This file is not included by default. It can be included via a task:
+# include: "service_config_{{ ansible_os_family }}.yml"
+
+- name: Configure Zones
+  template:
+    src: "{{ item.template_source }}"
+    dest: "/etc/bind/db.{{ item.name }}"
+    owner: root
+    group: root
+    mode: 'u=rw,g=r,o=r'
+  with_items: "{{ zones }}"
+  become: true
+  notify:
+    - "Restart Service 'bind9'"
+

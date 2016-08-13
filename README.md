@@ -1,7 +1,7 @@
 Role Name
 =========
 
-This role can be used to install and manage [bind](https://www.isc.org/downloads/bind/), a DNS server.
+This role can be used to install and manage [BIND](https://www.isc.org/downloads/bind/), a DNS server.
 
 ![Travis CI Build Status](https://travis-ci.org/karlmdavis/ansible-tested-bind.svg)
 
@@ -13,9 +13,15 @@ This role supports Ansible 2 and later on the development system, and requires U
 Role Variables
 --------------
 
-This role can be configured by altering the variables listed in this section, which are listed along with their default values (see [defaults/main.yml](defaults/main.yml)).
+This role can be configured by altering the variables listed in this section. See [defaults/main.yml](defaults/main.yml) for information on what the default vaules for these are.
 
-TODO
+The primary configuration variable is the `zones` list. It specifies the zones that will be served by BIND, as well as the source [template files](http://docs.ansible.com/ansible/template_module.html) that will be used to create the zone DB files.
+
+```
+zones:
+  - {name: 'foo.com', template_source: 'db.foo.com.j2'}
+  - {name: 'bar.com', template_source: 'db.bar.com.j2'}
+```
 
 Dependencies
 ------------
