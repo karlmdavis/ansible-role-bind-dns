@@ -3,8 +3,7 @@
   roles:
     # Apply the role (or error out if it fails somehow). (Note: this should just be the default directory name that Git
     # will use when cloning this repository.)
-    - {role: ansible-tested-bind,
-         zones:
-           - {name: 'foo.com', template_source: 'db.foo.com.j2'}
-      }
+    - role: ansible-tested-bind
+      zones:
+        - {name: 'foo.com', template_source: 'db.foo.com.j2'}
 
