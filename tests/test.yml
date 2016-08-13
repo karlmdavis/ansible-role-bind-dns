@@ -1,6 +1,7 @@
 ---
 - hosts: localhost
   roles:
-    # Apply the role (or error out if it fails somehow).
-    - tested-bind
+    # Apply the role (or error out if it fails somehow). (Note: this should just be the default directory name that Git
+    # will use when cloning this repository.)
+    - ansible-tested-bind
 
