@@ -1,5 +1,6 @@
 ---
 language: python
+cache: pip
 python: "2.7"
 
 # Use a full VM (rather than a sudo-less container), as we need sudo access to
