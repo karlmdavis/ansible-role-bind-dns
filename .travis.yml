@@ -27,11 +27,11 @@ script:
   - ansible-playbook tests/test.yml --inventory-file=tests/inventory --syntax-check
 
   # Run the role/playbook.
-  - ansible-playbook tests/tests-install.yml --inventory-file=tests/inventory --connection=local
+  - ansible-playbook tests/test.yml --inventory-file=tests/inventory --connection=local
 
   # Run the role/playbook again, checking to make sure it's idempotent.
   - >
-    ansible-playbook tests/tests-install.yml --inventory-file=tests/inventory --connection=local
+    ansible-playbook tests/test.yml --inventory-file=tests/inventory --connection=local
     | tee /dev/tty
     | grep -q 'changed=0.*failed=0'
     && (echo 'Idempotence test: pass' && exit 0)
