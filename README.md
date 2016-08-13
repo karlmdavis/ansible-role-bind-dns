@@ -1,7 +1,7 @@
 Role Name
 =========
 
-This role can be used to install and manage [BIND](https://www.isc.org/downloads/bind/), a DNS server.
+This role can be used to install and manage [BIND](https://www.isc.org/downloads/bind/), a DNS server. Unlike the other BIND roles for Ansible out there, this one allows the use of Jinja templates for the zone DB files, rather than just copying the files over without allowing any modification. This is useful in a number of cases, but particularly in tests.
 
 ![Travis CI Build Status](https://travis-ci.org/karlmdavis/ansible-tested-bind.svg)
 
