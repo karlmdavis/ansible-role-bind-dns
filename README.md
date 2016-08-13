@@ -19,8 +19,24 @@ The primary configuration variable is the `zones` list. It specifies the zones t
 
 ```
 zones:
-  - {name: 'foo.com', template_source: 'db.foo.com.j2'}
-  - {name: 'bar.com', template_source: 'db.bar.com.j2'}
+  - {name: 'example.com', template_source: 'db.example.com.j2'}
+  - {name: 'example.net', template_source: 'db.example.net.j2'}
+```
+
+The `forwarders` variable specifies which servers (if any) will be used to resolve queries for which the server is not authoritative.
+
+```
+forwarders:
+  - 192.0.2.1
+  - 203.0.113.1
+```
+
+The `zone_transfer_peers` variable specifies which other DNS servers (if any) will be allowed to perform zone transfers against this. This should be set to include any secondary name servers for the domains that are included.
+
+```
+zone_transfer_peers:
+  - 192.0.2.2
+  - 203.0.113.2
 ```
 
 Dependencies
@@ -31,11 +47,21 @@ This role does not have dependencies on other Ansible roles.
 Example Playbook
 ----------------
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
+This role can be included as follows:
 
-    - hosts: servers
+```
+    - hosts: servers_dns
       roles:
-         - { role: username.rolename, x: 42 }
+         - role: karlmdavis.tested-bind
+           zones:
+             - {name: 'example.com', template_source: 'db.example.com.j2'}
+           forwarders:
+             - 192.0.2.1
+             - 203.0.113.1 
+           zone_transfer_peers:
+             - 192.0.2.2
+             - 203.0.113.2
+```
 
 License
 -------
