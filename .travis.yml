@@ -32,7 +32,7 @@ script:
 
   # Run the role/playbook again, checking to make sure it's idempotent.
   - >
-    ansible-playbook tests/test.yml --inventory-file=tests/inventory --connection=local
+          ansible-playbook tests/test.yml --inventory-file=tests/inventory --connection=local --skip-tags "test"
     | tee /dev/tty
     | grep -q 'changed=0.*failed=0'
     && (echo 'Idempotence test: pass' && exit 0)

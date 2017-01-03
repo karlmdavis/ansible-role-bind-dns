@@ -16,9 +16,11 @@
   tasks:
 
     - meta: flush_handlers
+      tags: test
 
     - name: Verify DNS Lookup
       command: /usr/bin/dig @localhost mail.example.com A
       register: dig_result
       failed_when: "'status: NOERROR' not in dig_result.stdout or '9.10.11.12' not in dig_result.stdout"
+      tags: test
 
