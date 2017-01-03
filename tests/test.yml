@@ -13,3 +13,10 @@
         - 192.0.2.2
         - 203.0.113.2
 
+  tasks:
+
+    - name: Verify DNS Lookup
+      command: /usr/bin/dig @localhost mail.justdavis.com A
+      register: dig_result
+      fail_when: "'status: NOERROR' not in dig_result.stdout or '9.10.11.12' not in dig_result.stdout"
+

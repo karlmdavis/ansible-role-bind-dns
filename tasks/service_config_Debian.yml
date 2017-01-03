@@ -2,6 +2,20 @@
 # This file is not included by default. It can be included via a task:
 # include: "service_config_{{ ansible_os_family }}.yml"
 
+- name: Configure Bind
+  template:
+    src: "templates/{{ item }}"
+    dest: "/etc/bind/{{ item }}"
+    owner: root
+    group: root
+    mode: 'u=rw,g=r,o=r'
+  with_items:
+    - named.conf.local
+    - named.conf.options
+  become: true
+  notify:
+    - "Restart Service 'bind9'"
+
 - name: Configure Zones
   template:
     src: "{{ item.template_source }}"
