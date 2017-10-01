@@ -8,7 +8,7 @@ platform="ubuntu_16_04"
 sshPublicKey="$(eval echo ~)/.ssh/id_rsa.pub"
 
 # These only needs to be changed if this script is copied to another project.
-roleName="karlmdavis.bind_dns"
+roleName="karlmdavis.bind-dns"
 containerNamePrefix="ansible_test_bind_dns"
 
 # Determine the directory that this script is in.

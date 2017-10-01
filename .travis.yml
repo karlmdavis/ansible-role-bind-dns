@@ -30,7 +30,7 @@ install:
   - pip install "$ANSIBLE_SPEC" && pip install -r .travis/requirements.txt
   - ansible --version
   - mkdir .travis/roles
-  - ln -s `pwd` .travis/roles/karlmdavis.bind_dns
+  - ln -s `pwd` .travis/roles/karlmdavis.bind-dns
 
 script:
   # Ensure that Ansible treats this folder as the project's base.

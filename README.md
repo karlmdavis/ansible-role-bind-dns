@@ -53,7 +53,7 @@ This role can be included as follows:
     - hosts: somebox
       tasks:
         - import_role:
-            name: karlmdavis.bind_dns
+            name: karlmdavis.bind-dns
           vars:
             zones:
               - {name: 'example.com', template_source: 'templates/db.example.com.j2'}
