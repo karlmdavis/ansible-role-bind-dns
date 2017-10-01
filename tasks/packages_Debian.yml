@@ -1,7 +1,4 @@
 ---
-# This file is not included by default. It can be included via a task:
-# include: "packages_{{ ansible_os_family }}.yml"
-
 - name: Update APT Cache
   apt:
     update_cache: yes
@@ -13,4 +10,3 @@
     name: bind9
     state: present
   become: true
-
