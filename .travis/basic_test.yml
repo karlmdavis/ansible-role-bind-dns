@@ -1,0 +1,22 @@
+---
+##
+# Installs and verifies BIND on the container being used for the test case. 
+##
+
+# Install and configure BIND.
+- hosts: docker_container
+  tasks:
+    - import_role:
+        name: karlmdavis.bind_dns
+      vars:
+        zones:
+          - {name: 'example.com', template_source: 'templates/db.example.com.j2'}
+        forwarders:
+          - 192.0.2.1
+          - 203.0.113.1
+        zone_transfer_peers:
+          - 192.0.2.2
+          - 203.0.113.2
+
+# Run some test cases to verify that things worked as expected.
+- import_playbook: basic_test_verify.yml

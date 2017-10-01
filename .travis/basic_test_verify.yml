@@ -1,0 +1,20 @@
+---
+##
+# Verifies that BIND is correctly installed and running on the container being
+# used for the test case.
+##
+- hosts: docker_container
+  tasks:
+    - meta: flush_handlers
+
+    - name: Install dig Command
+      package:
+        name: dnsutils
+        state: present
+      become: true
+
+    - name: Verify DNS Lookup
+      command: /usr/bin/dig @localhost mail.example.com A
+      register: dig_result
+      changed_when: false
+      failed_when: "dig_result|failed or ('status: NOERROR' not in dig_result.stdout or '9.10.11.12' not in dig_result.stdout)"
