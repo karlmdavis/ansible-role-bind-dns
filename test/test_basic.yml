@@ -1,0 +1,34 @@
+---
+##
+# Installs and verifies BIND on the container being used for the test case. 
+##
+
+# Install and configure BIND.
+- hosts: docker_container
+  tasks:
+    - import_role:
+        name: karlmdavis.bind-dns
+      vars:
+        zones:
+          - {name: 'example.com', template_source: 'templates/db.example.com.j2'}
+        forwarders:
+          - 192.0.2.1
+          - 203.0.113.1
+        zone_transfer_peers:
+          - 192.0.2.2
+          - 203.0.113.2
+
+# Verify that things worked as expected.
+- hosts: docker_container
+  tasks:
+    - name: Install dig Command
+      package:
+        name: dnsutils
+        state: present
+      become: true
+
+    - name: Verify DNS Lookup
+      command: /usr/bin/dig @localhost mail.example.com A
+      register: dig_result
+      changed_when: false
+      failed_when: "dig_result|failed or ('status: NOERROR' not in dig_result.stdout or '9.10.11.12' not in dig_result.stdout)"
