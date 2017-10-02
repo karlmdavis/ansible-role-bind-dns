@@ -1,9 +1,9 @@
+[![Build Status](https://travis-ci.org/karlmdavis/ansible-role-bind-dns.svg?branch=master)](https://travis-ci.org/karlmdavis/ansible-role-bind-dns)
+
 Ansible Role for BIND DNS
 =========================
 
 This role can be used to install and manage [BIND](https://www.isc.org/downloads/bind/), a DNS server. Unlike the other BIND roles for Ansible out there, this one allows the use of Jinja templates for the zone DB files, rather than just copying the files over without allowing any modification. This is useful in a number of cases, but particularly in tests.
-
-[![Build Status](https://travis-ci.org/karlmdavis/ansible-bind-dns.svg?branch=master)](https://travis-ci.org/karlmdavis/ansible-bind-dns)
 
 Requirements
 ------------
