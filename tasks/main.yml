@@ -12,3 +12,7 @@
     state: started
     enabled: yes
   become: true
+
+# If the DNS configuration has been updated, we almost always want to apply
+# that immediately, as almost everything depends on DNS.
+- meta: flush_handlers
